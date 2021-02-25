@@ -18,6 +18,7 @@ namespace Xadrez
             turno = 1;
             jogadorAtual = Cor.Branca;
             colocarPecas();
+            terminada = false;
         }
 
         public void ExecutaMovimento(Posicao origem,Posicao destino)
