@@ -80,7 +80,6 @@ namespace Xadrez
                 turno++;
                 mudaJogador();
             }
-
         }
 
         public void validarPosicaoOrigem(Posicao pos)
@@ -101,7 +100,7 @@ namespace Xadrez
 
         public void validarPosicaoDestino(Posicao origem, Posicao destino)
         {
-            if (!tab.peca(origem).podeMoverpara(destino))
+            if (!tab.peca(origem).movimentoPossivel(destino))
             {
                 throw new TabuleiroException("Selecione uma posição de destino válida");
             }
