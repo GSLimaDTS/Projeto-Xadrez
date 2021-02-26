@@ -1,7 +1,7 @@
 ﻿using System;
 using tabuleiro;
+using xadrez;
 using Xadrez;
-using xadrez_console.Xadrez;
 
 namespace xadrez_console
 {
@@ -26,7 +26,7 @@ namespace xadrez_console
                         Console.WriteLine();
                         Console.Write("Digite a posição de origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                        partida.validarPosicaoOrigem(origem);
+                        partida.validarPosicaoDeOrigem(origem);
 
                         bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
@@ -36,7 +36,7 @@ namespace xadrez_console
                         Console.WriteLine();
                         Console.Write("Digite a posição de destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                        partida.validarPosicaoDestino(origem, destino);
+                        partida.validarPosicaoDeDestino(origem, destino);
 
                         partida.realizaJogada(origem, destino);
 

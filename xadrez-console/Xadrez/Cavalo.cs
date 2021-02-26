@@ -1,6 +1,6 @@
 ﻿using tabuleiro;
 
-namespace xadrez_console.Xadrez
+namespace Xadrez
 {
 
     class Cavalo : Peca
