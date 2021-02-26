@@ -71,9 +71,16 @@ namespace Xadrez
             {
                 xeque = false;
             }
+            if (testeMate(adversaria(jogadorAtual)))
+            {
+                terminada = true;
+            }
+            else
+            {
+                turno++;
+                mudaJogador();
+            }
 
-            turno++;
-            mudaJogador();
         }
 
         public void validarPosicaoOrigem(Posicao pos)
@@ -168,7 +175,7 @@ namespace Xadrez
             Peca R = rei(cor);
             if (R == null)
             {
-                throw new TabuleiroException("Não existe um Rei da cor " + cor + "no Tabuleiro");
+                throw new TabuleiroException("Não existe um Rei da cor " + cor + " no Tabuleiro");
             }
 
             foreach (Peca x in pecasEmJogo(adversaria(cor)))
@@ -180,6 +187,37 @@ namespace Xadrez
                 }
             }
             return false;
+        }
+
+        public bool testeMate(Cor cor)
+        {
+            if (!estaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in pecasEmJogo(cor))
+            {
+                bool[,] mat = x.movimentosPossiveis();
+                for(int i=0; i < tab.linhas; i++)
+                {
+                    for(int j=0; j<tab.colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(origem, destino);
+                            bool testeMate = estaEmXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeMate)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public void colocarNovaPeca(char coluna, int linha, Peca peca)

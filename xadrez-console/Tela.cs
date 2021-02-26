@@ -32,11 +32,24 @@ namespace xadrez_console
             Console.WriteLine();
 
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando Jogada: " + partida.jogadorAtual);
-            if (partida.xeque)
+            if (!partida.terminada)
+            {
+
+
+
+                Console.WriteLine("Aguardando Jogada: " + partida.jogadorAtual);
+                if (partida.xeque)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Xeque!");
+                }
+            }
+            else
             {
                 Console.WriteLine();
-                Console.WriteLine("Xeque!");
+                Console.WriteLine("Mate!");
+                Console.WriteLine();
+                Console.WriteLine("Vencedor:"+ partida.jogadorAtual);
             }
         }
 
